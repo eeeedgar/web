@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Плеер</title>
+<!--        <link rel="stylesheet" href="css/outline-prototype-safe.css">-->
+<!--        <link rel="stylesheet" href="css/outline-prototype-label.css">-->
+    <meta name="description" content="Service for playing music according to your speed">
+    <meta name="keywords" content="music, player, rate, velocity">
+</head>
+
+<body>
+
+<aside>
+    <h3>Меню</h3>
+    <nav>
+        <ul>
+            <li><a href="#">Сервис</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">Помощь</a></li>
+        </ul>
+    </nav>
+
+</aside>
+<main>
+    <h1>Здесь будет необычный аудиоплеер</h1>
+
+    <h3>Краткое описание алгоритма</h3>
+    <ol>
+        <li>Считаем передвижение человека</li>
+        <li>Вычисляем темп музыки</li>
+    </ol>
+    <aside>
+        <p>
+            <invisible-dots style="color: white">……………………………………</invisible-dots>„„--~~~****~„ „ | „„--„<br>
+            <invisible-dots style="color: white">……………………………….</invisible-dots>„~”: : : : : : : ; ; ; : “” : : : ”~-„<br>
+            <invisible-dots style="color: white">…………………………..</invisible-dots>„~”: : : : : : : : : ; : : : : : : : : : : : : : “~„<br>
+            <invisible-dots style="color: white">…………………......</invisible-dots>„~” : : : : : : : : : : : : : : : : : : : : : : : : : : : : : :”~„<br>
+            <invisible-dots style="color: white">…………….......</invisible-dots>„~” : : : : : : : : : : : : : : : : : : : : : : : : : „„„ : : : : : :”-„<br>
+            <invisible-dots style="color: white">……………….</invisible-dots>/” „- : : :„„-~„ : : : : : : : : : : : : : : : : : :”„ . ¯”*„--„„ : : “-„<br>
+            <invisible-dots style="color: white">……………...</invisible-dots>/„-“ : „-„” . .„“-“ : : : : : : : : : : : : : : : : : : : ”~„ .”-„ .”*-„ : “„<br>
+            <invisible-dots style="color: white">…………….</invisible-dots>„-“ :„-“ ./ . „-“ : : : : : : : : : : : : : : : : : : : : : : : “-„ .”„ . .|”-„ :\<br>
+            <invisible-dots style="color: white">……………</invisible-dots>/ : / . ./ .„-“ : : : ; : ; : : : : : : : : : : : : : : : : : : : : : : “-„| . .| : “„ :\<br>
+            <invisible-dots style="color: white">………….</invisible-dots>/ : „ :\ . \„“ : : : : ; : :; : ; : : : : : : : : : : : : : : :„ : : : : “-„„/ : : : : :\ :|<br>
+            <invisible-dots style="color: white">…………</invisible-dots>| : // : :”-„” : : : : |; : :; : ; : : : : : : : ; : : : : : : :| : : : -„ : ; ; ; : : :„ :\:|<br>
+            <invisible-dots style="color: white">………...</invisible-dots>|:/ / : : : | : : : :„ ||; : : ; ; ; : : : : ; : ; ; : : | : | : :|\ : : : \ : : ; ; : : : : : : :\ : \<br>
+            <invisible-dots style="color: white">……......</invisible-dots>|/..| : /; :| : | : :| :| \; | ; ; ; ; : : : ; ; : ; : : /| :/ \ : | \ : : : \ : : : : ; ; : : :| : :\<br>
+            <invisible-dots style="color: white">…………</invisible-dots>| :/; : | :/| : :|\:| . \| \; ; ; ; : : ; ; : / : :/ .|/ . . \ :| .\ :\ : :\ : ; ; : : : : :|| : /<br>
+            <invisible-dots style="color: white">………......</invisible-dots>|/|; : :\/ ;\ : | .\| . . . “-„\ ; : : | ; :/| „-“„--/~~***-„\**\ :\ : :| ; ; : | |/<br>
+            <invisible-dots style="color: white">……………</invisible-dots>|; : ; ; ; \/***””””„*„~--„”-„ : | |/ .„-*“„-~*/**^\~- . ./; \:\ : | ; | |<br>
+            <invisible-dots style="color: white">……………….</invisible-dots>|; ; ; ; ; ;\ . -*” .| :”*~ . “-„| . . . . . .„„\ : :/ . . / ; ; ;\ : |; : : |/<br>
+            <invisible-dots style="color: white">………………..</invisible-dots>\ ; ;| ; ; ; \ . . . \_„/„ . . . . . . . . . . .¯¯ . „-“„ ; ; ; ; \| : : /<br>
+            <invisible-dots style="color: white">………………….</invisible-dots>\ :|\ ; ; ; ;“-„ . . . . . . .„ . . . . . . . . . „-“ „-“; ; ; ; ;/ : :/<br>
+            <invisible-dots style="color: white">……………………</invisible-dots>\|.\; ; ; ; ;”-„”- . . . . “- . . . . . . . . . .„-“„-“; ; ; ;/ :„-“<br>
+            <invisible-dots style="color: white">………………………..</invisible-dots>\; ; ; ; ; ”-„„ . . . . .__„„ . . . . . “ „-“; ; ; ; ;/„-“<br>
+            <invisible-dots style="color: white">…………………………</invisible-dots>”-„; ; ; "¯„”” . . . . . . . . . . . .„-“ |/|;/.| „~”<br>
+            <invisible-dots style="color: white">……………………………</invisible-dots>”-„”-„~„-„”*~„ . . . . . . .„~“ : : |…..”<br>
+            <invisible-dots style="color: white">……………………………….</invisible-dots>”………..”/*~„_„~”: _„„„-~*”|„<br>
+            <invisible-dots style="color: white">………………………………………..</invisible-dots>„”*~--„::::¯¯_„„--„~*” |<br>
+            <invisible-dots style="color: white">………………………………………..</invisible-dots>| |„„ : |:::|¯¯: „„„„| . . .\<br>
+            <invisible-dots style="color: white">…………………………………….</invisible-dots>„„-“„-“*~ :”*” : . .****\ . . . \<br>
+            <invisible-dots style="color: white">………………………………</invisible-dots>„-~“¯:„|„“ : : : . . . . . . . . .\„„ . \”¯”*--„<br>
+            <invisible-dots style="color: white">………………….</invisible-dots>_„„„„----„-“¯:„-~”¯ .”*~-„ . . . . . .„„„--~*”” . . .\:::::::”--„<br>
+            <invisible-dots style="color: white">……………</invisible-dots>„-~“¯ . . . „-“:::„” . . . . . . . . “-„_„-~” . . . . . . . . . \:::::::\” .“-„<br>
+            <invisible-dots style="color: white">…………</invisible-dots>„-“ . . . . .„-“::::::/ . . . . . . . .„„„„„„.„„„„„ . . . . . . . . . . .|::::::”-„ . .¯”*~-„<br>
+            <invisible-dots style="color: white">……….</invisible-dots>„“ . . . . . .|::::::::/ . . . . . . . . || //|| || //|| . . . . . . . . . . |:::::::::”-„ . . . . . ”-„<br>
+            <invisible-dots style="color: white">………</invisible-dots>/ . . . . . . .|::::„-~”|’ . . . . . . . .””~” .””~” . . . . . . . . . . |-„„:::::::::| . . . . . . \<br>
+            <invisible-dots style="color: white">……..</invisible-dots>/-“”\ . . . . ./~“;;;;;;;| . . . . . . . . . . . . . . . . . . . . . . . . |;;;;;”*~-„:| . . . . . . . \<br>
+            <invisible-dots style="color: white">…….</invisible-dots>/~-„| . . .„-“;;;;;;;;;;;;| . . . . . . . . . . . . . . . . . . . . . . . . |;;;;;;;;;;;;;”-„ . . . . . . .\<br>
+            <invisible-dots style="color: white">……</invisible-dots>|’;;;;/ . . |;;;;;;;;;;;;;„-“ . . . . . . . . . . . . . . . . . . . . . . . . .\;;;;;;;;;;;;;;;\ . . . . „~„ \<br>
+            <invisible-dots style="color: white">…...</invisible-dots>|”~” . . . ‘|;;;;;;;;;„-“ . . . . . . . . . . . . . . . . . . . . . . . . . . . \;;;;;;;;;;;;;;;\ . . . |;;;| |<br>
+            <invisible-dots style="color: white">……</invisible-dots>| . . . . . .\;;;;;„-“ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .\;;;;;;;;;;;;;/ . . . |;;;| |<br>
+            <invisible-dots style="color: white">.......</invisible-dots>| . . . . . . \;;„” . . . . . . . . . . . . . . . . / . . . . . . . . . . . . . . .\;;;;;;;;;;/ . . . . “~”,|<br>
+            <invisible-dots style="color: white">…….</invisible-dots>| . . . . .„-“;/ . . . . . . . . . . . . . . . . . | . . . . . . . . . . . . . . . .|;;;;;„-“ . . . . . . . /<br>
+            <invisible-dots style="color: white">….....</invisible-dots>| . . . „”;;;;| . . . . . . . . . . . . . . . . . .| . . . . . . . . . . . . . . . |;;;;;\ . . . . . . . ./<br>
+            <invisible-dots style="color: white">.........</invisible-dots>| . . /;;;;;;;\ . . . . . . . . . . . . . . . . . .\ . . . . . . . . . . . . . . /;;;;;;;| . . . . . . /<br>
+            <invisible-dots style="color: white">…......</invisible-dots>| . /;;;;;;;;;;”~„ : : . . . . : : .„-~“¯¯”~-„ . . : : : : . . . : : : : „-“;;;;;;;;;| . . . . . /<br>
+            <invisible-dots style="color: white">…......</invisible-dots>| ./;;;;;;;;;;;;;;| “*~-„„„- : . . /;;„-~~-„;;;;\ . . .: „_ : : : :„„-~\;;;;;;;;;;;;;| . . . . /<br>
+            <invisible-dots style="color: white">…......</invisible-dots>| /;;;;;;;;;;;;„-“ . . .|” . . . . .|;;\;;;;;;/;;;;;| . . . . . ¯”””¯| . . . \;;;;;;;;;;;;| . . . /<br>
+            <invisible-dots style="color: white">…......</invisible-dots>| |;;;;;;;;;;;/ . . . . .”-„ . . . .\;;;;”*”;;;;;;/ . . . . . . .„„--“ . . . . \;;;;;;;;;;| . „„„/<br>
+            <invisible-dots style="color: white">……..</invisible-dots>| |;;;;;;;;;;;;”-/”¯””*~--„”-„ . . . \;;;;;;;„-“ . . . . „„-„*„„„„„„„„„„ . .„-“;;;;;;;;;| . | ./<br>
+            <invisible-dots style="color: white">……..</invisible-dots>”|;;;;;;;;;;;;;;;”-„;;;;;;;;;;;;;”| . . \;;;„-“ . . . . .|”;;;;;;;;;;;;;;;;”-“;;;;;;;;;;;;| . .|/<br>
+            <invisible-dots style="color: white">………</invisible-dots>|;;;;;;;;;;;;;;;;;\”~--„„;;;;;;| . . . |:| . . . . . . |;;;;;;;;;;;;;;„„-/;;;;;;;;;;;;;;| . /<br>
+            <invisible-dots style="color: white">….......</invisible-dots>|;;;;;;;;;;;;;;;;;| : : : :¯””* . . . |:| . . . . . . .|„„--~**””¯ : /;;;;;;;;;;;;;;;| ./<br>
+            <invisible-dots style="color: white">……....</invisible-dots>|;;;;;;;;;;;;;;;;;;\ : : : : : : : : :|:| : : : : . . . . . . : : : : /;;;;;;;;;;;;;;;;;|/<br>
+            <invisible-dots style="color: white">……….</invisible-dots>|”-„;;;;;;;;;;;;;;;;\ : : : : : : : . |:| . . . . . . . . . . . . . /;;;;;;;;;;;;;;;;;;/<br>
+            <invisible-dots style="color: white">…........</invisible-dots>| . “-„;;;;;;;;;;;;;;”*~-„„ *~-„„ |:| . . .„„__„„„„„„„--~ . ./;;;;;;;;;;;;;;;;;;/<br>
+            <invisible-dots style="color: white">………..</invisible-dots>| . . .”-„;;;;;;;;;;;;;;;;;;¯”*~-“„-“”*~-„ . . . . . . . „-~”~~„;„-~”¯¯”****~„~-„<br>
+            <invisible-dots style="color: white">………...</invisible-dots>| . . . . “-„;;;;;;;;;;;;;;;;;;;;;;;;¯”*~~----„„„„„„„„-“ . . “-„„| \ . . . . . . . . .\~„”-„<br>
+            <invisible-dots style="color: white">………….</invisible-dots>| . : : . |;;;;;;;;;;;;;;;;;;;;;;„„„„„„------~~~” . . . . . . . . .| . . . . . . . . .”-„”~”<br>
+            <invisible-dots style="color: white">………….</invisible-dots>| . . : : |;;;;;;;;;;;„„-~*”¯ . . . . . . . . . . . . . . . . . . . | . . . . . . . . . „-“-„<br>
+            <invisible-dots style="color: white">………….</invisible-dots>”-„„_„„„„”„”_””””” : : : : : : : : . . . . . . : : : : : . . :„: : / . . . . . . . . . \„„ ./<br>
+            <invisible-dots style="color: white">…………~NTG~.</invisible-dots>/ : : ¯¯”””***~„-„~~~~~~*****~~~-„ .„-“ ./„”-„ . . . . . . . .„-“..¯<br>
+            <invisible-dots style="color: white">…………………</invisible-dots>/ : : : : : : : . . |:| . . . . . . . . : : : : : “„-~””;;;;;”-„ : : . . .„„-“<br>
+            <invisible-dots style="color: white">………………..</invisible-dots>/ .„-„ . . . . . . . |:| . . . . . . . . . : /”*”~„|;;;;;;;;;;;;;;”~„ :„-“-„<br>
+            <invisible-dots style="color: white">………………</invisible-dots>/„-“ . | . . . . . . .|:| . . . . . . . . . . :| : : : |;;;;;;;;;;;;;;;;;;|”-„_/<br>
+            <invisible-dots style="color: white">………….....</invisible-dots>/ . . . .| . . . . . . |:| . . . . . . . . . . ./ : : : |;;;;;;;;;;;;;;;;;;| .|<br>
+            <invisible-dots style="color: white">……………</invisible-dots>/ . . . . .| . . . . . .|:| . . . . . . . . . . / . : : : |;;;;;;;;;;;;;;;;;| . |<br>
+            <invisible-dots style="color: white">……….....</invisible-dots>/ . . . . . .| . . . . . |:| . . . . . . . . . ./ . . . : : |;;;;;;;;;;;;;;;;| . |<br>
+            <invisible-dots style="color: white">…….......</invisible-dots>/ . . . . . . | . . . . . |:| . . . . . . . . . / . . . . . : |;;;;;;;;;;;;;;;| . |<br>
+            <invisible-dots style="color: white">………..</invisible-dots>/ . . . . . . . | . . . . . |:| . . . . . . . . / . . . . . . : |;;;;;;;;;;;;;| . .|<br>
+            <invisible-dots style="color: white">……....</invisible-dots>/ . . . . . . . . \ . . . . . |:| . . . . . . . / . . . . . . . .|;;;;;;;;;;;;| . . |<br>
+            <invisible-dots style="color: white">…......</invisible-dots>/ . . . . . . . . . .\ . . . . .|:| . . . . . . / . . . . . . . . .|;;;;;;;;;;;| . . |<br>
+            <invisible-dots style="color: white">……..</invisible-dots>/ . . . . . . . . . . .\ . . . . |:| . . . . . ./ . . . . . . . . . |;;;;;;;;;;| . . |<br>
+            <invisible-dots style="color: white">…….</invisible-dots>/ . . . . . . . . . . . . \ . . . .|:| . . . . ./ . . . . . . . . . . |;;;;;;;;;| . . |\<br>
+            <invisible-dots style="color: white">……</invisible-dots>| . . . . . . . . . . . . . .\ . . . “-“ . . . .| . . . . . . . . . . .|;;;;;;;;| . . .| \<br>
+            <invisible-dots style="color: white">......</invisible-dots>| . . . . . . . . . . . . . . .\ . . . . . . . .| . . . . . . . . . . . |;;;;;;;| . . .| : \<br>
+            <invisible-dots style="color: white">…..</invisible-dots>| . . . . . . . . . . . . . . . .\ . . . . . . .| . . . . . . . . . . . |¯”*~-“ . . .| : :\<br>
+            <invisible-dots style="color: white">.....</invisible-dots>| . . . . . . . . . . . . . . . . :\ . . . . . .| . . . . . . . . . . . .| . . . . . . .| : : \<br>
+            <invisible-dots style="color: white">.....</invisible-dots>| . . . . . . . . . . . . . . . . : :”-„ : : : :| . . . . . . . . . . .„-“„„„_„„„ . . .”-„„ : |<br>
+            <invisible-dots style="color: white">…..</invisible-dots>| . . . . . . . . . . . . . . . . . : : “*~~*”| . . . . . . . . „-*”„---„„„ . . . . . „-“\;;|<br>
+            <invisible-dots style="color: white">…..</invisible-dots>|\ . . . . . . . . . . . . . . . . : : : |”…...| . . . . . . . .|„ . |„ . .„/ . . . : :“~„/;;|<br>
+            <invisible-dots style="color: white">…..</invisible-dots>|;\ . . . . . . . . . . . . . . . . : : :|…….| . . . . . . . . .”*~ :„„„„----~* :|”¯/;;;|<br>
+            <invisible-dots style="color: white">…..</invisible-dots>|;;”-„ . . . . . . . . . . . . . . . : : :|…....| . . . . . . . . . “/ : : :””””””¯¯\ /;;;;;|<br>
+            <invisible-dots style="color: white">…..</invisible-dots>|;;;;;”-„ . . . . . . . . . . . . . . . : |........| . . . . . . . . / . . . . . . . . . .\;;;/|<br>
+            <invisible-dots style="color: white">......</invisible-dots>|\;;;;;;”-„ . . . . . . . . . . . . . . .:|........| . . . . . . ./ . . . . . . . . . . . .\” |<br>
+            <invisible-dots style="color: white">.......</invisible-dots>| “-„;;;;;”-„ . . . . . . . . . . . . . .|……..| . . . . . ./ . „- . . . . . . . . . . | :|<br>
+            <invisible-dots style="color: white">........</invisible-dots>| . ”-„;;;;;\ . . . . . . . . . . . . . .|……..| . . . . . | . .| . . . . . . . . . . .\ |<br>
+            <invisible-dots style="color: white">……..</invisible-dots>| . . . “~” . . . . . . . . . . . . . . |.........| . . . . .\ . .\ . . . . . . . . . . „ “*~-„<br>
+            <invisible-dots style="color: white">…......</invisible-dots>| . . . . . . . . . . . . . . . . . . . |….......\ . . . . . \ : \ . . . . . . .„-„ . \~-„ . \<br>
+            <invisible-dots style="color: white">………</invisible-dots>|\ . . . . . . . . . . . . . . . . . . .|…........\ . . . . . \ : \ . . .„~„ . \:\”-„ “-„-“ /<br>
+            <invisible-dots style="color: white">……....</invisible-dots>\;”-„ . . . . . . . . . . . . . . . . .|……......\ . . . . .|: :/\ . . | : \ . .\:\:\ . | .|<br>
+            <invisible-dots style="color: white">………..</invisible-dots>\;;;”-„ . . . . . . . . . . . . . . . |…….......\ . . . .| : / /| . . | : \ . . \;;| .|./<br>
+            <invisible-dots style="color: white">…………</invisible-dots>\„;;;;”-„ . . . . . . . . . . . . . .|………….\ . . . ”-„”-“ .\ . .\ : :\ : : |;| .|<br>
+            <invisible-dots style="color: white">………….</invisible-dots>\”-„;;;;”„ . . . . . . . . . . . . .|…………..| . . . . . . . \ . .\„-“;;\ . |” \_|<br>
+            <invisible-dots style="color: white">…………..</invisible-dots>\ . “~-“ . . . . . . . . . . . . . |……........| . . . . . . . .\ . .|;„-“| . .| .   |<br>
+            <invisible-dots style="color: white">……………</invisible-dots>\ . . . . . . . . . . . . . . . . .|…………..| . . . . . .„„„„ “*” . . “~-“ . .|<br>
+            <invisible-dots style="color: white">…………….</invisible-dots>\ . . . . . . .„-~”-„ . . . . . .|………......| . . . . |” . . “-„ . . . . . . . |<br>
+
+        </p>
+    </aside>
+
+    <p>
+        Из-за того, что <strong>ты</strong> ненавидишь себя, никто тебя не уважает
+        <sub>Аянами Рей</sub>
+    </p>
+
+
+</main>
+
+<footer>
+    <p>Placeholder for player controllers</p>
+</footer>
+
+</body>
+
+</html>
